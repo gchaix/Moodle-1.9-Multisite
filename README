@@ -1,0 +1,51 @@
+README      $Id: README,v 1.0 2011/04/30 13:52:10 gchaix Exp $
+
+Multi-site capability for Moodle
+
+This is a very simple hack that allows a single installation of the Moodle code
+to serve multiple sites simultaneously.  It's proven itself to be reliable and
+bug-free over five years in production with 400+ sites on a single Moodle
+codebase.
+
+Tested with Moodle 1.9.4 -> 1.9.9.
+
+Note - if you're not comfortable messing around in bash on the server and 
+editing config files by hand, this might not be the best solution for you.
+
+To install:
+
+1)  Download the current stable Moodle 1.9.x tarball and extract it somewhere 
+useful.  Example: /var/www/moodle/htdocs
+2)  Create a "moodlesites" directory for the site configuration files outside 
+the Moodle document root.  Like the moodledata directory , this directory 
+should not be accessible from the web.  Example: /var/www/moodle/moodlesites
+3)  Create the "moodledata" directory. Make sure it is writable by the web 
+server.  Example: /var/www/moodle/moodledata
+4)  Create INI files for each site you want to host.  Copy the 
+template.example.com.ini file to Moodle.site.FQDN.ini.  Edit the file to
+reflect your database credentials, system paths, etc.
+5)  Copy the moodleroot/config.php to the newly-extracted Moodle document root
+instead of creating and editing the config.php via the standard Moodle method.
+The included config.php should work without modification if you extracted the
+Moodle tarball to /var/www/moodle/htdocs, otherwise you will need to edit the 
+"$CFG->dirroot" line in section "0.1 Multi-host config" to match the actual
+path.
+6)  Create the database per the standard Moodle instructions.
+6.5)  (OPTIONAL) If you're like me and you use a pre-configured database dump 
+as a template, load it into the database here.
+7)  Navigate to http://moodle.site.fqdn to complete the installation. 
+
+To add new sites:
+1)  Create a database per the standard Moodle instructions.
+2)  Create a newsite.example.com.ini file in the moodlesites directory and edit
+it to add the database credentials.
+2.5)  (OPTIONAL) If you use a pre-configured database dump as a template, load 
+it into the database here.
+3)  Navigate to http://newsite.example.com to complete the installation.
+
+
+Questions, comments, suggested improvements are always welcome!
+
+Greg Lund-Chaix
+Oregon State University Open Source Lab
+gchaix@osuosl.org
