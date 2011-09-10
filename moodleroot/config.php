@@ -43,7 +43,7 @@ if (isset($_ENV['HTTP_HOST'])){ // this is to support cronjobs on a per-host bas
         $hostname = $_ENV['HTTP_HOST'];
 }
 // Load multi-site configs
-//$CFG->dirroot   = '/path/to/moodle/root/htdocs';
+// $CFG->dirroot   = '/path/to/moodle/root/htdocs';
 $CFG->dirroot   = '/var/www/moodle/htdocs';
 $multisite_config_filename = "$CFG->dirroot/moodlesites/$hostname.ini";
 if (file_exists($multisite_config_filename)) {
@@ -71,12 +71,6 @@ if (file_exists($multisite_config_filename)) {
 //    $CFG->dbhost = " user='muser' password='mpass' dbname='mdata'";    //
 //
 
-// Original config 
-//$CFG->dbtype    = 'mysql';       // mysql or postgres7 (for now)
-//$CFG->dbhost    = 'localhost';   // eg localhost or db.isp.com
-//$CFG->dbname    = 'moodle';      // database name, eg moodle
-//$CFG->dbuser    = 'username';    // your database username
-//$CFG->dbpass    = 'password';    // your database password
 // Multi-host config
 $CFG->dbtype    = 'mysql';
 $CFG->dbhost    = $sites_array['dbhost'];
